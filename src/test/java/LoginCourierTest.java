@@ -1,21 +1,22 @@
+import Courier.Courier;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import Courier.CourierGenerator;
+import Courier.Credentials;
+import Courier.ClientCourier;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class LoginCourierTest {
     private Courier courier;
-    private Credentials credentials;
-     private ClientCourier clientCourier;
+         private ClientCourier clientCourier;
     @Before
     public void setUp() {
         clientCourier= new ClientCourier();
-        courier=CourierGenerator.getDefault();
+        courier= CourierGenerator.authorization();
         clientCourier.creatingCourier(courier);
 
     }
@@ -29,7 +30,7 @@ public class LoginCourierTest {
     @DisplayName("authorization with  invalid password")
      public  void authorizationWithInvalidPassword(){
         Courier courier =  CourierGenerator.authorization();
-        courier.setPassword("123456dfasd");
+        courier.setPassword(courier.getPassword()+"fhgelh");
         Response response = clientCourier.loginCourier(Credentials.from(courier));
         response.then().statusCode(404).and().body("message", equalTo("Учетная запись не найдена"));
     }

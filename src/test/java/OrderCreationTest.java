@@ -1,4 +1,5 @@
-
+import Order.OrderClient;
+import Order.Order;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -6,12 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-
+import Order.OrderGenerator;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 @RunWith(Parameterized.class)
 public class OrderCreationTest {
+    private Response response;
     private OrderClient orderClient;
  private Order order;
  private int expectedStatusCode;
@@ -37,17 +38,19 @@ public class OrderCreationTest {
     @Before
     public void setUp() {
         orderClient = new OrderClient();
+        order =OrderGenerator.colourBlackAndGray();
     }
 
     @Test
     @DisplayName(" Creation order")
     public void orderCreation() {
-        Response response = orderClient.orderCreation(order);
+
+       response = orderClient.orderCreation(order);
+
         response.then().statusCode(expectedStatusCode).and().body("track", notNullValue());
          }
     @After
     public void end (){
-        Response response = orderClient.orderCreation(order);
         Integer track = response.then().extract().path("track");
         orderClient.endOrder(order,track);
     }

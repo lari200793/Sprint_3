@@ -1,3 +1,4 @@
+import Order.OrderClient;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Before;

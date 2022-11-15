@@ -1,10 +1,15 @@
+import Courier.Courier;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import static org.hamcrest.CoreMatchers.equalTo;
+import Courier.Credentials;
+import Courier.CourierGenerator;
+import Courier.ClientCourier;
 
 @RunWith(Parameterized.class)
 public class CreatingACourierWithoutLoginOrPassword {
@@ -43,4 +48,13 @@ public class CreatingACourierWithoutLoginOrPassword {
                           .body("message", equalTo (expectedMessage));
 
         }
-}
+
+    @After
+    public void end() {
+        Response response = clientCourier.loginCourier(Credentials.from(courier));
+        Integer id = response.then().extract().path("id");
+        if (id != 0) {
+            clientCourier.deleteCourier(id);
+        }
+    }
+    }

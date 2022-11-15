@@ -1,4 +1,4 @@
-import io.qameta.allure.Step;
+import Courier.Courier;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -7,7 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import static org.hamcrest.CoreMatchers.equalTo;
-
+import Courier.ClientCourier;
+import Courier.CourierGenerator;
+import Courier.Credentials;
 @RunWith(Parameterized.class)
 public class CreatingACourierTest {
     private Courier courier;
@@ -37,8 +39,8 @@ public class CreatingACourierTest {
     }
     @Test
     @DisplayName("check post creating courier")
-   public void checkPostCreatingCourier() {
-        Response response = clientCourier.creatingCourier(courier);
+    public void checkPostCreatingCourier() {
+                Response response = clientCourier.creatingCourier(courier);
                     response.then().assertThat().statusCode(expectedStatusCode)
                     .and().body("ok", equalTo(expected));
 
