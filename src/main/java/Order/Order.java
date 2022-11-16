@@ -56,7 +56,7 @@ public class Order {
     public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
-
+    
     public void setComment(String comment) {
         this.comment = comment;
     }
