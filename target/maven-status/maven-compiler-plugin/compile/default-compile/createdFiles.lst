@@ -1,8 +1,0 @@
-Order/OrderGenerator.class
-Courier/CourierGenerator.class
-Order/Order.class
-Courier/Courier.class
-Client/Client.class
-Courier/ClientCourier.class
-Courier/Credentials.class
-Order/OrderClient.class

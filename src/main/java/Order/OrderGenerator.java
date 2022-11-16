@@ -1,12 +1,8 @@
 package Order;
-
-import Order.Order;
 import com.github.javafaker.Faker;
-
 import java.util.List;
-
 public class OrderGenerator {
-     static Faker faker = new Faker();
+    private static Faker faker = new Faker();
     public static String setFirstNameOrder(){
         return faker.address().firstName();
     }
@@ -14,7 +10,7 @@ public class OrderGenerator {
         return faker.address().lastName();
     }
     public static String setAddressOrder(){
-        return faker.address().fullAddress();
+        return faker.address().secondaryAddress();
     }
     public static String setMetroStationOrder(){
         return faker.address().streetAddress();
@@ -23,7 +19,7 @@ public class OrderGenerator {
         return faker.number().randomDigit();
     }
     public static String setDeliveryDateOrder(){
-        return faker.bothify("##-##-####");
+        return faker.bothify("202#-08-1#");
     }
     public static String setCommentOrder(){
         return faker.letterify("??????????????????????? ???????? ??????");
@@ -32,7 +28,7 @@ public class OrderGenerator {
         return faker.bothify("###########");
     }
     public static Order colourBlackAndGray (){
-        return new Order(setFirstNameOrder(), setLastNameOrder(), setAddressOrder(), setMetroStationOrder(), setPhoneOrder(), setRentalTimeOrder(), setDeliveryDateOrder(), setCommentOrder(), List.of("BLACK", "GRAY"));
+        return new Order(setFirstNameOrder(), setLastNameOrder(), setAddressOrder(), setMetroStationOrder(), setPhoneOrder(), setRentalTimeOrder(), setDeliveryDateOrder(), "Saske, come back to Konoha", List.of("BLACK", "GRAY"));
     }
     public static Order colourBlack(){
         return new Order(setFirstNameOrder(), setLastNameOrder(), setAddressOrder(), setMetroStationOrder(), setPhoneOrder(), setRentalTimeOrder(), setDeliveryDateOrder(), setCommentOrder(),List.of("BLACK"));

@@ -15,7 +15,7 @@ public class OrderClient extends Client {
                         .spec(getSpec())
                         .body(order)
                         .when()
-                        .post("/api/v1/orders");
+                        .post(ORDER_CREATING);
         return response;
     }
     @ Step(" Delete order")
